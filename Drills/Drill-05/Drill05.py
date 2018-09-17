@@ -45,8 +45,10 @@ def move_reft(divided_x, divided_y, index):
 def move_point_to_point(index):
     divided_x = (Point_List[index + 1][0] - Point_List[index][0]) / 30
     divided_y = (Point_List[index + 1][1] - Point_List[index][1]) / 30
-    #move_right(divided_x, divided_y, index)
-    move_reft(divided_x, divided_y, index)
+    if divided_x < 0:
+        move_reft(divided_x, divided_y, index)
+    elif divided_x >0:
+        move_right(divided_x, divided_y, index)
 
 
 
