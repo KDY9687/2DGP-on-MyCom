@@ -11,7 +11,18 @@ def move_right(divided_x, divided_y, index):
     x = Point_List[index][0]
     y = Point_List[index][1]
     repeat = 0
-    pass
+
+    while repeat != 30:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.clip_draw(frame * 100, 0, 100, 100, x, y)
+        update_canvas()
+        frame = (frame + 1) % 8
+        x += divided_x
+        y += divided_y
+        repeat += 1
+        delay(0.05)
+        get_events()
 
 def move_reft(divdivided_x, divided_y, index):
     frame = 0
