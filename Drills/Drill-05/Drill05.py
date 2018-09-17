@@ -24,17 +24,29 @@ def move_right(divided_x, divided_y, index):
         delay(0.05)
         get_events()
 
-def move_reft(divdivided_x, divided_y, index):
+def move_reft(divided_x, divided_y, index):
     frame = 0
     x = Point_List[index][0]
     y = Point_List[index][1]
     repeat = 0
-    pass
+
+    while repeat != 30:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.clip_draw(frame * 100, 100, 100, 100, x, y)
+        update_canvas()
+        frame = (frame + 1) % 8
+        x += divided_x
+        y += divided_y
+        repeat += 1
+        delay(0.05)
+        get_events()
 
 def move_point_to_point(index):
     divided_x = (Point_List[index + 1][0] - Point_List[index][0]) / 30
     divided_y = (Point_List[index + 1][1] - Point_List[index][1]) / 30
-    move_right(divided_x, divided_y, index)
+    #move_right(divided_x, divided_y, index)
+    move_reft(divided_x, divided_y, index)
 
 
 
