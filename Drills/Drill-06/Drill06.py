@@ -25,14 +25,15 @@ hand = load_image('hand_arrow.png')
 
 running = True
 x, y = KPU_WIDTH // 2, KPU_HEIGHT // 2
-target_x, target_y = KPU_WIDTH // 2, KPU_HEIGHT // 2
+target_x, target_y = 0, 0
+boy_x, boy_y = KPU_WIDTH // 2, KPU_HEIGHT // 2
 frame = 0
 hide_cursor()
 
 while running:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, 100, 100)
+    character.clip_draw(frame * 100, 100 * 1, 100, 100, boy_x, boy_y)
     hand.draw_now(x + 20, y- 25)
     update_canvas()
     frame = (frame + 1) % 8
