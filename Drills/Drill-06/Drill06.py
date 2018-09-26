@@ -14,7 +14,8 @@ def handle_events():
         elif event.type == SDL_MOUSEMOTION:
             x, y = event.x, KPU_HEIGHT - 1 - event.y
         elif event.type == SDL_MOUSEBUTTONDOWN:
-            target_x, target_y = event.x, KPU_HEIGHT - 1 - event.y
+            if(event.button == SDL_BUTTON_LEFT):
+                target_x, target_y = event.x, KPU_HEIGHT - 1 - event.y
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
@@ -25,7 +26,7 @@ hand = load_image('hand_arrow.png')
 
 running = True
 x, y = KPU_WIDTH // 2, KPU_HEIGHT // 2
-target_x, target_y = 0, 0
+target_x, target_y = KPU_WIDTH // 2, KPU_HEIGHT // 2
 boy_x, boy_y = KPU_WIDTH // 2, KPU_HEIGHT // 2
 frame = 0
 hide_cursor()
@@ -33,6 +34,10 @@ hide_cursor()
 while running:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
+    if(boy_x != target_x):
+        boy_x += 1
+    if(boy_y != target_y):
+        boy_y += 1
     character.clip_draw(frame * 100, 100 * 1, 100, 100, boy_x, boy_y)
     hand.draw_now(x + 20, y- 25)
     update_canvas()
