@@ -58,21 +58,19 @@ def draw_curved_line(p1, p2, p3, p4, start_point):
 
     for i in range(0, 100, 2):
         t = i / 100
-        x = ((-t ** 3 + 2 * t ** 2 - t) * p1[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * p2[0] + (
-                    -3 * t ** 3 + 4 * t ** 2 + t) * p3[0] + (t ** 3 - t ** 2) * p4[0]) / 2
-        y = ((-t ** 3 + 2 * t ** 2 - t) * p1[1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p2[1] + (
-                    -3 * t ** 3 + 4 * t ** 2 + t) * p3[1] + (t ** 3 - t ** 2) * p4[1]) / 2
+        x = ((-t**3 + 2*t**2 - t)*p1[0] + (3*t**3 - 5*t**2 + 2)*p2[0] + (-3*t**3 + 4*t**2 + t)*p3[0] + (t**3 - t**2)*p4[0])/2
+        y = ((-t**3 + 2*t**2 - t)*p1[1] + (3*t**3 - 5*t**2 + 2)*p2[1] + (-3*t**3 + 4*t**2 + t)*p3[1] + (t**3 - t**2)*p4[1])/2
         draw_point((x, y))
     draw_point(start_point)
 
-points = [(-300, 200), (400, 350), (300, -300), (-200, -200)]
+def draw_points(p, n):
+    for i in range(0, n, 1):
+        draw_big_point(p[i])
+
+n = 10
+points = [(random.randint(-400, 400), random.randint(-400, 400)) for i in range(n)]
 
 prepare_turtle_canvas()
 
-while True:
-    draw_curved_line((-200, -200), (-300, 200), (400, 350), (300, -300), (-300, 200))
-    draw_curved_line((-300, 200), (400, 350), (300, -300), (-200, -200), (400, 350))
-    draw_curved_line((400, 350), (300, -300), (-200, -200), (-300, 200), (300, -300))
-    draw_curved_line((300, -300), (-200, -200), (-300, 200), (400, 350), (-200, -200))
-
+draw_points(points, n)
 turtle.done()
