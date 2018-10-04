@@ -64,9 +64,21 @@ def draw_points(p, n):
         draw_big_point(p[i])
 
 n = 10
-points = [(random.randint(-400, 400), random.randint(-400, 400)) for i in range(n)]
+p = [(random.randint(-400, 400), random.randint(-400, 400)) for i in range(n)]
 
 prepare_turtle_canvas()
 
-draw_points(points, n)
+draw_points(p, n)
+
+while True:
+    draw_curved_line(p[0], p[1], p[2], p[3], p[1])
+    draw_curved_line(p[1], p[2], p[3], p[4], p[2])
+    draw_curved_line(p[2], p[3], p[4], p[5], p[3])
+    draw_curved_line(p[3], p[4], p[5], p[6], p[4])
+    draw_curved_line(p[4], p[5], p[6], p[7], p[5])
+    draw_curved_line(p[5], p[6], p[7], p[8], p[6])
+    draw_curved_line(p[6], p[7], p[8], p[9], p[7])
+    draw_curved_line(p[7], p[8], p[9], p[0], p[8])
+    draw_curved_line(p[8], p[9], p[0], p[1], p[9])
+    draw_curved_line(p[9], p[0], p[1], p[2], p[0])
 turtle.done()
