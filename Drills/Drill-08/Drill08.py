@@ -50,7 +50,8 @@ def draw_point(p):
     turtle.goto(p)
     turtle.dot(5, random.random(), random.random(), random.random())
 
-
+def draw_curved_line(p1, p2, p3, p4, start_point):
+    pass
 prepare_turtle_canvas()
 
 
