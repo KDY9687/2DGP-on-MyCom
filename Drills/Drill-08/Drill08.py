@@ -51,7 +51,22 @@ def draw_point(p):
     turtle.dot(5, random.random(), random.random(), random.random())
 
 def draw_curved_line(p1, p2, p3, p4, start_point):
-    pass
+    draw_big_point(p1)
+    draw_big_point(p2)
+    draw_big_point(p3)
+    draw_big_point(p4)
+
+    for i in range(0, 100, 2):
+        t = i / 100
+        x = ((-t ** 3 + 2 * t ** 2 - t) * p1[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * p2[0] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * p3[0] + (t ** 3 - t ** 2) * p4[0]) / 2
+        y = ((-t ** 3 + 2 * t ** 2 - t) * p1[1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p2[1] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * p3[1] + (t ** 3 - t ** 2) * p4[1]) / 2
+        draw_point((x, y))
+    draw_point(start_point)
+
+points = [(-300, 200), (400, 350), (300, -300), (-200, -200)]
+
 prepare_turtle_canvas()
 
 
