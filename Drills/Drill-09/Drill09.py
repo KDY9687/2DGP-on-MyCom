@@ -20,6 +20,27 @@ class Boy:
     def draw(self):
         self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
 
+class Ball:
+    def __init__(self):
+        self.x, self.y = random.randint(100, 700), 560
+        self.kinds = random.randint(0, 1)
+        if self.kinds == 0:
+            self.image1 = load_image('ball21x21.png')
+        else:
+            self.image2 = load_image('ball41x41.png')
+        self.speed = random.randint(6, 10)
+
+    def update(self):
+        for i in range(self.speed):
+            if self.y != 40:
+                self.y -= 1
+
+    def draw(self):
+        if self.kinds == 0:
+            self.image1.clip_draw(0, 0, 21, 21, self.x, self.y+21)
+        else:
+            self.image2.clip_draw(0, 0, 41, 41, self.x, self.y+30)
+
 def handle_events():
     global running
     events = get_events()
