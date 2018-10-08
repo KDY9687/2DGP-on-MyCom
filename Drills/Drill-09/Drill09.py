@@ -51,9 +51,12 @@ def handle_events():
             running = False
 
 open_canvas()
+boy = Boy()
+grass = Grass()
+ball = Ball()
 
 team = [Boy() for i in range(11)]
-grass = Grass()
+balls = [Ball() for i in range(21)]
 
 running = True
 
