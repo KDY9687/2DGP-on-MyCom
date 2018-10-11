@@ -3,7 +3,7 @@ from pico2d import *
 import main_state
 
 
-name = "Drill10-1"
+name = "Drill10_1"
 image = None
 
 
@@ -25,8 +25,8 @@ def handle_events():
         else:
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                game_framework.change_state(main_state)
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
+                game_framework.pop_state()
 
 def draw():
     clear_canvas()

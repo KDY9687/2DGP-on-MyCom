@@ -5,8 +5,7 @@ from pico2d import *
 
 name = "PauseState"
 image = None
-image2 = None
-image3 = None
+
 
 def enter():
     pass
