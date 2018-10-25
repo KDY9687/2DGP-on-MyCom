@@ -4,7 +4,7 @@ from ball import Ball
 import game_world
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, SHIFT_UP, SHIFT_DOWN = range(8)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, L_SHIFT_UP, L_SHIFT_DOWN, R_SHIFT_UP, R_SHIFT_DOWN = range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -12,8 +12,10 @@ key_event_table = {
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE,
-    (SDL_KEYDOWN, SDLK_LSHIFT | SDLK_RSHIFT): SHIFT_DOWN,
-    (SDL_KEYUP, SDLK_LSHIFT | SDLK_RSHIFT): SHIFT_UP
+    (SDL_KEYDOWN, SDLK_LSHIFT): L_SHIFT_DOWN,
+    (SDL_KEYUP, SDLK_LSHIFT): L_SHIFT_UP,
+    (SDL_KEYDOWN, SDLK_RSHIFT): R_SHIFT_DOWN,
+    (SDL_KEYUP, SDLK_RSHIFT): R_SHIFT_UP
 }
 
 
@@ -152,10 +154,11 @@ next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
                 SLEEP_TIMER: SleepState, SPACE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,
-               SPACE: RunState, SHIFT_DOWN: DashState},
+               SPACE: RunState, L_SHIFT_DOWN: DashState, R_SHIFT_DOWN: DashState},
     SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN: RunState, LEFT_UP: RunState, RIGHT_UP: RunState,
                  SPACE: IdleState},
-    DashState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, SHIFT_DOWN: DashState, SHIFT_UP: RunState}
+    DashState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, L_SHIFT_DOWN: DashState, L_SHIFT_UP: RunState,
+                R_SHIFT_DOWN: DashState, R_SHIFT_UP: RunState}
 }
 
 class Boy:
