@@ -2,6 +2,7 @@ import game_framework
 from pico2d import *
 from ball import Ball
 
+import random
 import game_world
 
 # Boy Run Speed
@@ -46,7 +47,8 @@ class IdleState:
             boy.velocity -= RUN_SPEED_PPS
         elif event == LEFT_UP:
             boy.velocity += RUN_SPEED_PPS
-        boy.timer = 1000
+        boy.timer = get_time()
+        boy.start_sleep = boy.timer + 2.6
 
     @staticmethod
     def exit(boy, event):
@@ -57,8 +59,8 @@ class IdleState:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
-        boy.timer -= 1
-        if boy.timer == 0:
+        boy.timer = get_time()
+        if boy.timer >= boy.start_sleep:
             boy.add_event(SLEEP_TIMER)
 
     @staticmethod
@@ -107,6 +109,11 @@ class SleepState:
     @staticmethod
     def enter(boy, event):
         boy.frame = 0
+        boy.opacity = random.randint(0, 500) / 1000
+        boy.wakeup_timer = get_time()
+        boy.wakeup = get_time() + 1.0
+        boy.ypos = 100
+        boy.wakeup_seta = 1
 
     @staticmethod
     def exit(boy, event):
@@ -114,14 +121,27 @@ class SleepState:
 
     @staticmethod
     def do(boy):
+        boy.opacity = random.randint(0, 500) / 1000
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
+        boy.wakeup_timer = get_time()
 
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
+            boy.image.opacify(1)
             boy.image.clip_composite_draw(int(boy.frame) * 100, 300, 100, 100, 3.141592 / 2, '', boy.x - 25, boy.y - 25, 100, 100)
+            boy.image.opacify(boy.opacity)
+            if boy.wakeup_timer > boy.wakeup:
+                if boy.wakeup_timer < 5:
+                    boy.ypos+=0.1
+                    boy.image.clip_composite_draw(int(boy.frame) * 100, 300, 100, 100, 3.141592 * boy.wakeup_seta / 2, '', boy.x - 25,
+                                                boy.ypos - 25, 100, 100)
+                    if boy.wakeup_seta > 0:
+                        boy.wakeup_seta -= 0.1
         else:
+            boy.image.opacify(1)
             boy.image.clip_composite_draw(int(boy.frame) * 100, 200, 100, 100, -3.141592 / 2, '', boy.x + 25, boy.y - 25, 100, 100)
+            boy.image.opacify(boy.opacity)
 
 
 
