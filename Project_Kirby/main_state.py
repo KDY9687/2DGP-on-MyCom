@@ -6,20 +6,20 @@ from pico2d import *
 import game_framework
 import game_world
 
-from boy import Boy
-from grass import Grass
+from Kirby import kirby
+#from Floor import floor
 
 
 name = "MainState"
 
-boy = None
+Kirby = None
 
 def enter():
-    global boy
-    boy = Boy()
-    grass = Grass()
-    game_world.add_object(grass, 0)
-    game_world.add_object(boy, 1)
+    global Kirby
+    Kirby = kirby()
+    #Floor = floor()
+    #game_world.add_object(grass, 0)
+    game_world.add_object(Kirby, 1)
 
 
 def exit():
@@ -41,7 +41,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.quit()
         else:
-            boy.handle_event(event)
+            Kirby.handle_event(event)
 
 
 def update():
