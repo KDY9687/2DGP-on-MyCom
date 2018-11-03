@@ -5,11 +5,17 @@ import math
 import random
 import game_world
 
+#커비 서있는 상태 x :190 시작 + 25 * 3  y : 3895
 PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
+
+TIME_PER_ACTION = 0.5
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 3
 
 
 RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, S_DOWN, SPACE, A_DOWN = range(7)
@@ -49,7 +55,7 @@ class IdleState:
     @staticmethod
     def draw(kirby):
         if kirby.dir == 1:
-            kirby.image.clip_draw(230, 4680, 30, 30, kirby.x, kirby.y)
+            kirby.image.clip_draw(189, 3895, 25, 30, kirby.x, kirby.y)
         else:
             kirby.image.clip_draw(int(kirby.frame) * 100, 200, 100, 100, kirby.x, kirby.y)
 
@@ -168,6 +174,7 @@ class kirby:
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
+        self.twinkle_switch = 0
 
 
 

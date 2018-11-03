@@ -7,6 +7,7 @@ import game_framework
 import game_world
 
 from Kirby import kirby
+from background import Background
 #from Floor import floor
 
 
@@ -17,8 +18,9 @@ Kirby = None
 def enter():
     global Kirby
     Kirby = kirby()
+    background = Background()
     #Floor = floor()
-    #game_world.add_object(grass, 0)
+    game_world.add_object(background, 0)
     game_world.add_object(Kirby, 1)
 
 
