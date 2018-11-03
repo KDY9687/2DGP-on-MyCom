@@ -43,12 +43,15 @@ class IdleState:
         pass
 
     @staticmethod
-    def do(boy):
+    def do(kirby):
         pass
 
     @staticmethod
-    def draw(boy):
-        pass
+    def draw(kirby):
+        if kirby.dir == 1:
+            kirby.image.clip_draw(230, 4680, 30, 30, kirby.x, kirby.y)
+        else:
+            kirby.image.clip_draw(int(kirby.frame) * 100, 200, 100, 100, kirby.x, kirby.y)
 
 
 class RunState:
@@ -158,8 +161,7 @@ class kirby:
 
     def __init__(self):
         self.x, self.y = 1600 // 2, 90
-        # Boy is only once created, so instance image loading is fine
-        self.image = load_image('kirby.png')
+        self.image = load_image('Kirby.png')
         self.dir = 1
         self.velocity = 0
         self.frame = 0
