@@ -8,7 +8,7 @@ import game_world
 
 from Kirby import kirby
 from background import Background
-#from Floor import floor
+from Floor import Floor
 
 
 name = "MainState"
@@ -19,9 +19,11 @@ def enter():
     global Kirby
     Kirby = kirby()
     background = Background()
+    floor = Floor()
     #Floor = floor()
     game_world.add_object(background, 0)
-    game_world.add_object(Kirby, 1)
+    game_world.add_object(floor, 1)
+    game_world.add_object(Kirby, 2)
 
 
 def exit():

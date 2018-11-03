@@ -166,7 +166,7 @@ next_state_table = {
 class kirby:
 
     def __init__(self):
-        self.x, self.y = 1600 // 2, 90
+        self.x, self.y = 100, 58
         self.image = load_image('Kirby.png')
         self.dir = 1
         self.velocity = 0
