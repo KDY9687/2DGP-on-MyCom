@@ -55,9 +55,9 @@ class IdleState:
     @staticmethod
     def draw(kirby):
         if kirby.dir == 1:
-            kirby.image.clip_draw(189, 3895, 25, 30, kirby.x, kirby.y)
+            kirby.image.clip_composite_draw(189, 3895, 25, 30, 0, '', kirby.x, kirby.y, 25, 30)
         else:
-            kirby.image.clip_draw(int(kirby.frame) * 100, 200, 100, 100, kirby.x, kirby.y)
+            kirby.image.clip_composite_draw(189, 3895, 25, 30, 0, 'h', kirby.x, kirby.y, 25, 30)
 
 
 class RunState:
@@ -80,11 +80,16 @@ class RunState:
 
     @staticmethod
     def do(kirby):
-        pass
+        kirby.frame = (kirby.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 10
+        kirby.x += kirby.velocity * game_framework.frame_time
+        kirby.x = clamp(25, kirby.x, 1600 - 25)
 
     @staticmethod
     def draw(kirby):
-        pass
+        if kirby.dir == 1:
+            kirby.image.clip_composite_draw(94 + 24 * (int(kirby.frame)), 3805, 24, 30, 0, '', kirby.x, kirby.y, 25, 30)
+        else:
+            kirby.image.clip_composite_draw(94 + 24 * (int(kirby.frame)), 3805, 24, 30, 0, 'h', kirby.x, kirby.y, 25, 30)
 
 
 
@@ -175,8 +180,6 @@ class kirby:
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
         self.twinkle_switch = 0
-
-
 
     def add_event(self, event):
         self.event_que.insert(0, event)
