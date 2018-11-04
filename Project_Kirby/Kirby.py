@@ -82,7 +82,7 @@ class RunState:
     def do(kirby):
         kirby.frame = (kirby.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 10
         kirby.x += kirby.velocity * game_framework.frame_time
-        kirby.x = clamp(25, kirby.x, 1600 - 25)
+        kirby.x = clamp(10, kirby.x, 1600 - 25)
 
     @staticmethod
     def draw(kirby):
