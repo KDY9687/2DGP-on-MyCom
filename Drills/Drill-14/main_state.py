@@ -45,6 +45,12 @@ def enter():
     balls = [Ball() for i in range(100)]
     game_world.add_objects(balls, 1)
 
+    for ball in balls:
+        if collide(boy, ball):
+            background.set_center_object(ball)
+            ball.set_background(background)
+            game_world.remove_object(ball)
+
 def exit():
     game_world.clear()
 
@@ -70,7 +76,11 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
-
+    for ball in balls:
+        if collide(boy, ball):
+            balls.remove(ball)
+            boy.eat(ball)
+            game_world.remove_object(ball)
 
 def draw():
     clear_canvas()
