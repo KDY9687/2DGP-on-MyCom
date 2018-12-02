@@ -20,6 +20,7 @@ name = "WorldBuildState"
 
 menu = None
 
+
 def enter():
     global menu
     menu = load_image('menu.png')
@@ -39,8 +40,11 @@ def resume():
 def get_boy():
     return boy
 
+def update():
+    pass
 def create_new_world():
     global boy
+    global zombie
     boy = Boy()
     game_world.add_object(boy, 1)
 
@@ -76,9 +80,6 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_l:
             load_saved_world()
             game_framework.change_state(main_state)
-
-def update():
-    pass
 
 def draw():
     clear_canvas()

@@ -63,6 +63,9 @@ class Zombie:
 
         return BehaviorTree.SUCCESS
 
+    def get_bb(self):
+        # fill here
+        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
 
     def find_player(self):
         boy = world_build_state.get_boy()

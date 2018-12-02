@@ -8,7 +8,7 @@ import game_framework
 import game_world
 
 import world_build_state
-
+from zombie import Zombie
 name = "MainState"
 
 
@@ -25,15 +25,153 @@ def collide(a, b):
     return True
 
 boy = None
+zombies = []
 
 def enter():
     # game world is prepared already in world_build_state
     global boy
     boy = world_build_state.get_boy()
-    pass
+
+    global zombies
+    with open('zombie_data.json', 'r') as f:
+        zombies = json.load(f)
+    game_world.add_object(zombies, 1)
 
 def exit():
     game_world.clear()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def pause():
     pass
@@ -59,6 +197,8 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
+
+
 
 
 def draw():
